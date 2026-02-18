@@ -195,7 +195,7 @@ Customer-Churn-Prediction/
 └── README.md
 
 <h2>💻 How to Run Locally</h2>
-```
+```bash
 git clone https://github.com/rajjaiswal159/Telecom-Customer-Churn-Prediction.git
 cd customer-churn-prediction
 ```
