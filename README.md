@@ -21,15 +21,7 @@ To accurately predict whether a customer will churn so that the company can take
 
 📌 Total Features: 12
 
-✅ Dataset is balanced
-
-❌ No duplicate rows
-
-❌ No outliers in numerical features
-
-🧹 Null values removed
-
-Key Features:
+</h3>Key Features:</h3>
 
 Age
 
