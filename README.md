@@ -6,7 +6,7 @@ Customer churn is one of the biggest challenges in the telecom industry. Retaini
 This project builds a Machine Learning pipeline to predict whether a telecom customer will churn based on demographic, behavioral, and subscription-related features.
 
 The final solution is deployed using Streamlit with SHAP-based explainability to provide transparent predictions.
-<hr>
+
 <h2>🎯 Business Problem</h2>
 
 Telecom companies face revenue loss due to customer churn.
@@ -15,7 +15,7 @@ The objective of this project is:
 
 To accurately predict whether a customer will churn so that the company can take proactive retention actions.
 
-📂 Dataset Information
+<h2>📂 Dataset Information</h2>
 
 📊 Total Rows: 505,207
 
