@@ -61,93 +61,93 @@ Key business insights discovered:
 
 <h2>🛠 Tech Stack</h2>
 
-Python
+ • Python
 
-Pandas
+ • Pandas
 
-NumPy
+ • NumPy
 
-Matplotlib & Seaborn
+ • Matplotlib & Seaborn
 
-Scikit-learn
+ • Scikit-learn
 
-XGBoost
+ • XGBoost
 
-LightGBM
+ • LightGBM
 
-Optuna (Hyperparameter Tuning)
+ • Optuna (Hyperparameter Tuning)
 
-SHAP (Explainable AI)
+ • SHAP (Explainable AI)
 
-Streamlit (Deployment)
+ • Streamlit (Deployment)
 
 <h2>⚙️ Data Preprocessing</h2>
 
-Dropped CustomerID
+ • Dropped CustomerID
 
-Removed null values
+ • Removed null values
 
-Converted float features to integer
+ • Converted float features to integer
 
-Used ColumnTransformer
+ • Used ColumnTransformer
 
-OneHotEncoder → Gender
+ • OneHotEncoder → Gender
 
-OrdinalEncoder → Subscription Type & Contract Length
+ • OrdinalEncoder → Subscription Type & Contract Length
 
-Pipeline used for clean preprocessing + modeling
+ • Pipeline used for clean preprocessing + modeling
 
 <h2>🤖 Model Selection</h2>
 
 The following models were evaluated using cross-validation:
 
-Logistic Regression
+ • Logistic Regression
 
-Decision Tree
+ • Decision Tree
 
-Random Forest
+ • Random Forest
 
-XGBoost
+ • XGBoost
 
-LightGBM
+ • LightGBM
 
 <h2>📈 Best Performing Models:</h2>
 
-Random Forest
+ • Random Forest
 
-LightGBM
+ • LightGBM
 
 <h2>🔧 Hyperparameter Tuning</h2>
 
 Hyperparameter tuning was performed using Optuna for:
 
-Random Forest
+ • Random Forest
 
-LightGBM
+ • LightGBM
 
 Both models showed comparable performance with similar:
 
-Accuracy
+ • Accuracy
 
-Precision
+ • Precision
 
-Recall
+ • Recall
 
-F1-score
+ • F1-score
 
 <h2>📊 Model Evaluation</h2>
 
 Evaluation Metrics Used:
 
-Accuracy
+ • Accuracy
 
-Precision
+ • Precision
 
-Recall
+ • Recall
 
-F1-Score
+ • F1-Score
 
-Classification Report
+ • Classification Report
 
 Both RandomForest and LightGBM achieved strong and balanced performance on the test set.
 
@@ -155,13 +155,13 @@ Both RandomForest and LightGBM achieved strong and balanced performance on the t
 
 An interactive web application was built using Streamlit where users can:
 
-Enter customer details
+ • Enter customer details
 
-Get churn prediction
+ • Get churn prediction
 
-View churn probability
+ • View churn probability
 
-See SHAP Waterfall explanation for transparency
+ • See SHAP Waterfall explanation for transparency
 
 <h2>🔍 Features of the App:</h2>
 
@@ -174,11 +174,11 @@ See SHAP Waterfall explanation for transparency
 
 To ensure model transparency:
 
-Used shap.TreeExplainer
+ • Used shap.TreeExplainer
 
-Generated SHAP Waterfall plots
+ • Generated SHAP Waterfall plots
 
-Identified top contributing features for each prediction
+ • Identified top contributing features for each prediction
 
 This makes the model production-ready and trustworthy.
 
@@ -192,9 +192,10 @@ Customer-Churn-Prediction/
 └── README.md
 
 <h2>💻 How to Run Locally</h2>
-<h2>1️⃣ Clone the repository</h2>
+```
 git clone https://github.com/rajjaiswal159/Telecom-Customer-Churn-Prediction.git
 cd customer-churn-prediction
+```
 
 <h2>2️⃣ Install dependencies</h2>
 pip install -r requirements.txt
