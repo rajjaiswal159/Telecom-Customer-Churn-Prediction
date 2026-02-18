@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 
 # load model
-xgb_model = joblib.load('model.pkl')
+lgbm_model = joblib.load('model.pkl')
 
 
 # -------------------- UI --------------------
@@ -75,8 +75,8 @@ if st.button('Predict'):
     })
 
     # Extract pipeline components
-    preprocessor = xgb_model.named_steps['preprocessor']
-    model = xgb_model.named_steps['model']
+    preprocessor = lgbm_model.named_steps['preprocessor']
+    model = lgbm_model.named_steps['model']
 
     # Transform input
     x_transformed = preprocessor.transform(inp)
@@ -117,3 +117,4 @@ if st.button('Predict'):
 
     st.pyplot(fig)
     plt.clf()
+
