@@ -1,5 +1,5 @@
 <h1>📊 Telecom Customer Churn Prediction</h1>
-#📌 Project Overview
+<h2>📌 Project Overview</h2>
 
 Customer churn is one of the biggest challenges in the telecom industry. Retaining existing customers is significantly more cost-effective than acquiring new ones.
 
