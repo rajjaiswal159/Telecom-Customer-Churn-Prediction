@@ -17,33 +17,33 @@ To accurately predict whether a customer will churn so that the company can take
 
 <h2>📂 Dataset Information</h2>
 
-📊 Total Rows: 505,207
+ • 📊 Total Rows: 505,207
 
-📌 Total Features: 12
+ • 📌 Total Features: 12
 
 Key Features:
 
-Age
+ • Age
 
-Gender
+ • Gender
 
-Tenure
+ • Tenure
 
-Usage Frequency
+ • Usage Frequency
 
-Support Calls
+ • Support Calls
 
-Payment Delay
+ • Payment Delay
 
-Subscription Type (Basic, Standard, Premium)
+ • Subscription Type (Basic, Standard, Premium)
 
-Contract Length (Monthly, Quarterly, Annual)
+ • Contract Length (Monthly, Quarterly, Annual)
 
-Total Spend
+ • Total Spend
 
-Last Interaction
+ • Last Interaction
 
-Target Variable: Churn (0/1)
+ • Target Variable: Churn (0/1)
 
 <h2>🔎 Exploratory Data Analysis (EDA) Insights</h2>
 
