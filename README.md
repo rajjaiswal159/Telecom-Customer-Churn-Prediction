@@ -1,133 +1,249 @@
-# 📉 Customer Churn Prediction with Explainable AI
+📊 Telecom Customer Churn Prediction
+📌 Project Overview
 
-Predicting customer churn helps businesses retain valuable users and reduce revenue loss. This project leverages machine learning to predict customer churn and integrates **Explainable AI** techniques to interpret the model's decisions.
+Customer churn is one of the biggest challenges in the telecom industry. Retaining existing customers is significantly more cost-effective than acquiring new ones.
 
----
+This project builds a Machine Learning pipeline to predict whether a telecom customer will churn based on demographic, behavioral, and subscription-related features.
 
-## 🚀 Overview
+The final solution is deployed using Streamlit with SHAP-based explainability to provide transparent predictions.
 
-In this project:
-- Perform end-to-end **data preprocessing**.
-- Train multiple **ML models** for churn prediction.
-- Use **SHAP** (SHapley Additive exPlanations) and **LIME** (Local Interpretable Model-agnostic Explanations) for model explainability.
-- Visualize key insights to drive business decisions.
+🎯 Business Problem
 
----
+Telecom companies face revenue loss due to customer churn.
 
-## 📁 Project Structure
+The objective of this project is:
 
-README.md - Project documentation || 
-images/ - Folder containing output plots and SHAP visualizations ||
-requirements.txt - List of required Python libraries || 
-CustomerChurn.ipynb - Main notebook containg all visualizations, model training and full ML pipeline  || 
-model.pkl - Contained trained ML model || 
-app.py - Streamlit app with SHAP visualizations
+To accurately predict whether a customer will churn so that the company can take proactive retention actions.
 
----
+📂 Dataset Information
 
-## 🧠 Machine Learning Algorithms Used
+📊 Total Rows: 505,207
 
-- Logistic Regression
-- Decision Tree
-- Random Forest
-- XGBoost
-- LightGBM
+📌 Total Features: 12
 
-The best-performing model is selected based on cross validation score.
+✅ Dataset is balanced
 
----
+❌ No duplicate rows
 
-## 📊 Evaluation Metrics
+❌ No outliers in numerical features
 
-- Accuracy
-- Precision, Recall, F1-Score
-- Confusion Matrix
+🧹 Null values removed
 
-> ✅ Achieved an accuracy of **~93%** and using the XGBoost classifier.
+Key Features:
 
----
+Age
 
-## 💡 Explainable AI (XAI)
+Gender
 
-To ensure **trust and transparency**, we used:
+Tenure
 
-### ✅ SHAP
-- Global feature importance
-- Individual prediction explanations
+Usage Frequency
 
-### ✅ LIME
-- Local interpretations
-- Explains what influenced a particular prediction
+Support Calls
 
----
+Payment Delay
 
-## 📌 Key Insights
+Subscription Type (Basic, Standard, Premium)
 
-- Support calls, Monthly Charges, and Contract Type were the most influential features.
-- Customers with **month-to-month contracts**, **high charges**, and **low tenure** were more likely to churn.
+Contract Length (Monthly, Quarterly, Annual)
 
----
+Total Spend
 
-## 🛠️ Installation
+Last Interaction
 
-Clone the repo and install dependencies:
+Target Variable: Churn (0/1)
 
-```bash
-git clone https://github.com/rajjaiswal/Telecom-CustomerChurn-Prediction.git
-cd Telecom-CustomerChurn-Prediction.git
+🔎 Exploratory Data Analysis (EDA) Insights
+
+Key business insights discovered:
+
+📌 Customers with Monthly contracts have higher churn rate.
+
+📌 Customers with more than 4 support calls show strong churn tendency.
+
+📌 Payment delays greater than 20 days significantly increase churn probability.
+
+📌 Customers with Total Spend < 500 are more likely to churn.
+
+📌 Customers above 50 years have higher churn probability.
+
+🛠 Tech Stack
+
+Python
+
+Pandas
+
+NumPy
+
+Matplotlib & Seaborn
+
+Scikit-learn
+
+XGBoost
+
+LightGBM
+
+Optuna (Hyperparameter Tuning)
+
+SHAP (Explainable AI)
+
+Streamlit (Deployment)
+
+⚙️ Data Preprocessing
+
+Dropped CustomerID
+
+Removed null values
+
+Converted float features to integer
+
+Used ColumnTransformer
+
+OneHotEncoder → Gender
+
+OrdinalEncoder → Subscription Type & Contract Length
+
+Pipeline used for clean preprocessing + modeling
+
+🤖 Model Selection
+
+The following models were evaluated using cross-validation:
+
+Logistic Regression
+
+Decision Tree
+
+Random Forest
+
+XGBoost
+
+LightGBM
+
+📈 Best Performing Models:
+
+Random Forest
+
+LightGBM
+
+🔧 Hyperparameter Tuning
+
+Hyperparameter tuning was performed using Optuna for:
+
+Random Forest
+
+LightGBM
+
+Both models showed comparable performance with similar:
+
+Accuracy
+
+Precision
+
+Recall
+
+F1-score
+
+📊 Model Evaluation
+
+Evaluation Metrics Used:
+
+Accuracy
+
+Precision
+
+Recall
+
+F1-Score
+
+Classification Report
+
+Both RandomForest and LightGBM achieved strong and balanced performance on the test set.
+
+🚀 Streamlit Web App
+
+An interactive web application was built using Streamlit where users can:
+
+Enter customer details
+
+Get churn prediction
+
+View churn probability
+
+See SHAP Waterfall explanation for transparency
+
+🔍 Features of the App:
+
+✔ Real-time prediction
+✔ Probability score
+✔ SHAP explainability
+✔ Clean UI
+
+🧠 Explainable AI (SHAP)
+
+To ensure model transparency:
+
+Used shap.TreeExplainer
+
+Generated SHAP Waterfall plots
+
+Identified top contributing features for each prediction
+
+This makes the model production-ready and trustworthy.
+
+📁 Project Structure
+Customer-Churn-Prediction/
+│
+├── CustomerChurn.ipynb
+├── app.py
+├── model.pkl
+├── mydata.csv
+└── README.md
+
+💻 How to Run Locally
+1️⃣ Clone the repository
+git clone https://github.com/your-username/customer-churn-prediction.git
+cd customer-churn-prediction
+
+2️⃣ Install dependencies
 pip install -r requirements.txt
-```
 
+3️⃣ Run Streamlit app
+streamlit run app.py
 
-▶️ How to Run
-1. Launch Jupyter Notebook:
-```bash
-jupyter notebook CustomerChurn.ipynb
-```
+📸 App Preview
 
-2. Open CustomerChurn.ipynb :
+(Add screenshots of your Streamlit app here)
 
-   Run the cells in order to see analysis, model, performance.
+🔮 Future Improvements
 
-3. Run Streamlit App:
-   ```bash
-   streamlit run app.py
-   ```
+Add ROC-AUC visualization
 
+Deploy on Streamlit Cloud / AWS / Render
 
-🧪 Requirements
-  • Python 3.8+
+Add model comparison dashboard
 
-  • pandas, numpy, scikit-learn
+Add feature importance visualization inside app
 
-  • matplotlib, seaborn
+Handle class imbalance using advanced sampling techniques
 
-  • xgboost, lightgbm
+📌 Key Learning Outcomes
 
-  • shap, lime
+End-to-end ML Pipeline creation
 
+Feature engineering & preprocessing
 
-Install via:
+Hyperparameter tuning with Optuna
 
-```bash
-pip install -r requirements.txt
-```
+Model comparison & evaluation
 
+Explainable AI using SHAP
 
-📎 Dataset
-<br>
-The dataset used in this project is publicly available from the Telco Customer Churn Dataset on Kaggle.
+Model deployment using Streamlit
 
+👨‍💻 Author
 
-📸 Sample Output
-![Model Output](Images/model_output.png)
-![Model Output](Images/shap_visualixation.png)
-📢 Conclusion
-This project demonstrates not only how to predict churn using robust ML techniques but also how to interpret and explain predictions, empowering data-driven and transparent business decisions.
+Raj Jaiswal
+B.Tech (Computer Science & Engineering)
+Aspiring Data Scientist
 
-🤝 Let's Connect
-<br>
-Made by Raj Jaiswal
-
-📄 License
-This project is licensed under the MIT License.
+⭐ If you found this project useful, consider giving it a star!
