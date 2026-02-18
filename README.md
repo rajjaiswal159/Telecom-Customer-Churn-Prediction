@@ -21,7 +21,7 @@ To accurately predict whether a customer will churn so that the company can take
 
 📌 Total Features: 12
 
-</h3>Key Features:</h3>
+Key Features:
 
 Age
 
@@ -45,7 +45,7 @@ Last Interaction
 
 Target Variable: Churn (0/1)
 
-🔎 Exploratory Data Analysis (EDA) Insights
+<h2>🔎 Exploratory Data Analysis (EDA) Insights</h2>
 
 Key business insights discovered:
 
@@ -59,7 +59,7 @@ Key business insights discovered:
 
 📌 Customers above 50 years have higher churn probability.
 
-🛠 Tech Stack
+<h2>🛠 Tech Stack</h2>
 
 Python
 
@@ -81,7 +81,7 @@ SHAP (Explainable AI)
 
 Streamlit (Deployment)
 
-⚙️ Data Preprocessing
+<h2>⚙️ Data Preprocessing</h2>
 
 Dropped CustomerID
 
@@ -97,7 +97,7 @@ OrdinalEncoder → Subscription Type & Contract Length
 
 Pipeline used for clean preprocessing + modeling
 
-🤖 Model Selection
+<h2>🤖 Model Selection</h2>
 
 The following models were evaluated using cross-validation:
 
@@ -111,13 +111,13 @@ XGBoost
 
 LightGBM
 
-📈 Best Performing Models:
+<h2>📈 Best Performing Models:</h2>
 
 Random Forest
 
 LightGBM
 
-🔧 Hyperparameter Tuning
+<h2>🔧 Hyperparameter Tuning</h2>
 
 Hyperparameter tuning was performed using Optuna for:
 
@@ -135,7 +135,7 @@ Recall
 
 F1-score
 
-📊 Model Evaluation
+<h2>📊 Model Evaluation</h2>
 
 Evaluation Metrics Used:
 
@@ -151,7 +151,7 @@ Classification Report
 
 Both RandomForest and LightGBM achieved strong and balanced performance on the test set.
 
-🚀 Streamlit Web App
+<h2>🚀 Streamlit Web App</h2>
 
 An interactive web application was built using Streamlit where users can:
 
@@ -163,14 +163,14 @@ View churn probability
 
 See SHAP Waterfall explanation for transparency
 
-🔍 Features of the App:
+<h2>🔍 Features of the App:</h2>
 
 ✔ Real-time prediction
 ✔ Probability score
 ✔ SHAP explainability
 ✔ Clean UI
 
-🧠 Explainable AI (SHAP)
+<h2>🧠 Explainable AI (SHAP)</h2>
 
 To ensure model transparency:
 
@@ -182,7 +182,7 @@ Identified top contributing features for each prediction
 
 This makes the model production-ready and trustworthy.
 
-📁 Project Structure
+<h2>📁 Project Structure</h2>
 Customer-Churn-Prediction/
 │
 ├── CustomerChurn.ipynb
@@ -191,34 +191,18 @@ Customer-Churn-Prediction/
 ├── mydata.csv
 └── README.md
 
-💻 How to Run Locally
-1️⃣ Clone the repository
-git clone https://github.com/your-username/customer-churn-prediction.git
+<h2>💻 How to Run Locally</h2>
+<h2>1️⃣ Clone the repository</h2>
+git clone https://github.com/rajjaiswal159/Telecom-Customer-Churn-Prediction.git
 cd customer-churn-prediction
 
-2️⃣ Install dependencies
+<h2>2️⃣ Install dependencies</h2>
 pip install -r requirements.txt
 
-3️⃣ Run Streamlit app
+<h2>3️⃣ Run Streamlit app</h2>
 streamlit run app.py
 
-📸 App Preview
-
-(Add screenshots of your Streamlit app here)
-
-🔮 Future Improvements
-
-Add ROC-AUC visualization
-
-Deploy on Streamlit Cloud / AWS / Render
-
-Add model comparison dashboard
-
-Add feature importance visualization inside app
-
-Handle class imbalance using advanced sampling techniques
-
-📌 Key Learning Outcomes
+<h2>📌 Key Learning Outcomes</h2>
 
 End-to-end ML Pipeline creation
 
@@ -232,7 +216,7 @@ Explainable AI using SHAP
 
 Model deployment using Streamlit
 
-👨‍💻 Author
+<h2>👨‍💻 Author</h2>
 
 Raj Jaiswal
 B.Tech (Computer Science & Engineering)
