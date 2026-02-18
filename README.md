@@ -166,8 +166,11 @@ An interactive web application was built using Streamlit where users can:
 <h2>🔍 Features of the App:</h2>
 
 ✔ Real-time prediction
+
 ✔ Probability score
+
 ✔ SHAP explainability
+
 ✔ Clean UI
 
 <h2>🧠 Explainable AI (SHAP)</h2>
