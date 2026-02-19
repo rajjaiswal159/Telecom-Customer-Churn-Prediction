@@ -1,27 +1,11 @@
-# Core data wrangling & numerics
-pandas>=2.2,<2.3
-numpy>=1.26,<2.0
-
-# Modeling & machine-learning utilities
-scikit-learn>=1.5,<1.6
-imbalanced-learn>=0.13,<0.14          # handy for class-imbalance fixes
-xgboost>=2.0,<2.1                     # high-performance gradient boosting
-lightgbm>=4.3,<4.4                    # fast GBDT alternative
-catboost>=1.2,<1.3                    # categorical-friendly boosting
-joblib>=1.4,<1.5                      # model serialization
-
-# Hyper-parameter tuning (optional but useful)
-optuna>=3.6,<3.7
-
-# Explainable AI
-shap>=0.45,<0.46                      # SHAP values & plots
-lime>=0.2,<0.3                        # Local Interpretable Model-agnostic Explanations
-
-# Visualization
-matplotlib>=3.9,<3.10
-seaborn>=0.13,<0.14
-scikit-plot>=0.3,<0.4                 # quick ROC/PR curves, etc.
-tqdm>=4.66,<4.67                      # progress bars
-
-# Interactive / notebook environment (optional)
-jupyterlab>=4.1,<4.2
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+xgboost
+lightgbm
+optuna
+streamlit
+shap
+joblib
