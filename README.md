@@ -192,10 +192,16 @@ cd customer-churn-prediction
 ```
 
 <h2>2️⃣ Install dependencies</h2>
+
+```bash
 pip install -r requirements.txt
+```
 
 <h2>3️⃣ Run Streamlit app</h2>
+
+```bash
 streamlit run app.py
+```
 
 <h2>📌 Key Learning Outcomes</h2>
 
