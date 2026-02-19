@@ -125,16 +125,6 @@ Hyperparameter tuning was performed using Optuna for:
 
  • LightGBM
 
-Both models showed comparable performance with similar:
-
- • Accuracy
-
- • Precision
-
- • Recall
-
- • F1-score
-
 <h2>📊 Model Evaluation</h2>
 
 Evaluation Metrics Used:
@@ -195,6 +185,7 @@ Customer-Churn-Prediction/
 └── README.md
 
 <h2>💻 How to Run Locally</h2>
+
 ```bash
 git clone https://github.com/rajjaiswal159/Telecom-Customer-Churn-Prediction.git
 cd customer-churn-prediction
