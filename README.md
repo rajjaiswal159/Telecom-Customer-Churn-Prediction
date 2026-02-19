@@ -176,6 +176,8 @@ To ensure model transparency:
 This makes the model production-ready and trustworthy.
 
 <h2>📁 Project Structure</h2>
+
+```bash
 Customer-Churn-Prediction/
 │
 ├── CustomerChurn.ipynb
@@ -183,9 +185,10 @@ Customer-Churn-Prediction/
 ├── model.pkl
 ├── mydata.csv
 └── README.md
+```
 
 <h2>💻 How to Run Locally</h2>
-<h2>1️⃣ Clone the repository</h2>h2>
+<h2>1️⃣ Clone the repository</h2>
 
 ```bash
 git clone https://github.com/rajjaiswal159/Telecom-Customer-Churn-Prediction.git
@@ -206,17 +209,17 @@ streamlit run app.py
 
 <h2>📌 Key Learning Outcomes</h2>
 
-End-to-end ML Pipeline creation
+ • End-to-end ML Pipeline creation
 
-Feature engineering & preprocessing
+ • Feature engineering & preprocessing
 
-Hyperparameter tuning with Optuna
+ • Hyperparameter tuning with Optuna
 
-Model comparison & evaluation
+ • Model comparison & evaluation
 
-Explainable AI using SHAP
+ • Explainable AI using SHAP
 
-Model deployment using Streamlit
+ • Model deployment using Streamlit
 
 <h2>👨‍💻 Author</h2>
 
