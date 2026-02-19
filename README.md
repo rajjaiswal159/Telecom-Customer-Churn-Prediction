@@ -188,20 +188,20 @@ Customer-Churn-Prediction/
 ```
 
 <h2>💻 How to Run Locally</h2>
-<h2>1️⃣ Clone the repository</h2>
+1️⃣ Clone the repository
 
 ```bash
 git clone https://github.com/rajjaiswal159/Telecom-Customer-Churn-Prediction.git
 cd customer-churn-prediction
 ```
 
-<h2>2️⃣ Install dependencies</h2>
+2️⃣ Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-<h2>3️⃣ Run Streamlit app</h2>
+3️⃣ Run Streamlit app
 
 ```bash
 streamlit run app.py
