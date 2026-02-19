@@ -223,8 +223,6 @@ streamlit run app.py
 
 <h2>👨‍💻 Author</h2>
 
-Raj Jaiswal
-B.Tech (Computer Science & Engineering)
-Aspiring Data Scientist
+Raj Jaiswalt
 
 ⭐ If you found this project useful, consider giving it a star!
