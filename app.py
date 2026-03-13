@@ -89,14 +89,15 @@ if st.button('Predict'):
 
     # Make prediction
     prediction = model.predict(x_transformed_df)[0]
-    proba = model.predict_proba(x_transformed_df)[0][1]
+    no_churn_proba = model.predict_proba(x_transformed_df)[0][0]
+    churn_proba = model.predict_proba(x_transformed_df)[0][1]
 
     st.markdown("### 📊 Model Prediction")
 
     if prediction == 1:
-        st.error(f"🚨 Customer WILL Churn (Probability: {proba:.2%})")
+        st.error(f"🚨 Customer WILL Churn (Probability: {churn_proba:.2%})")
     else:
-        st.success(f"✅ Customer will NOT Churn (Probability: {proba:.2%})")
+        st.success(f"✅ Customer will NOT Churn (Probability: {no_churn_proba:.2%})")
 
     # -------------------- SHAP Explanation --------------------
     st.subheader("🔍 SHAP Waterfall Explanation")
