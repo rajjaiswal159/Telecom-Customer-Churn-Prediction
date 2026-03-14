@@ -55,7 +55,7 @@ streamlit run app.py
 <h2>📈 Model Performance</h2>
 Based on the experimental results in the notebook, both RandomForest and LightGBM demonstrated high accuracy and comparable F1-scores, making them reliable for business deployment.
 
-📁 Project Structure
+<h2>📁 Project Structure</h2>
 ● CustomerChurn.ipynb: Notebook for data preprocessing, EDA, and model training.
 
 ● app.py: Streamlit application script.
