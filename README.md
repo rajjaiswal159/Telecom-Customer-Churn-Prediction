@@ -1,228 +1,63 @@
-<h1>📊 Telecom Customer Churn Prediction</h1>
-<h2>📌 Project Overview</h2>
+<h2>Telecom Customer Churn Prediction & Strategy Simulator</h2>
+This project aims to help telecom companies identify customers at risk of leaving (churning) and provides a simulation tool to test the impact of retention strategies. It consists of a data science workflow for model building and a Streamlit-based web application for real-time predictions and business analysis.
 
-Customer churn is one of the biggest challenges in the telecom industry. Retaining existing customers is significantly more cost-effective than acquiring new ones.
+<h2>🚀 Overview</h2>
+The repository is structured into two main components:
 
-This project builds a Machine Learning pipeline to predict whether a telecom customer will churn based on demographic, behavioral, and subscription-related features.
+1. Model Training Workflow (CustomerChurn.ipynb): A complete Jupyter Notebook covering data cleaning, Exploratory Data Analysis (EDA), and training multiple machine learning models (Random Forest, LightGBM, etc.) to predict churn.
 
-The final solution is deployed using Streamlit with SHAP-based explainability to provide transparent predictions.
+2. Interactive Web App (app.py): A Streamlit application that allows users to predict churn for individual customers and simulate how changes in service factors (like price or support calls) affect overall churn rates.
 
-<h2>🎯 Business Problem</h2>
+<h2>🛠️ Features</h2>
+● Single Customer Prediction: Input specific customer attributes (Age, Tenure, Usage Frequency, etc.) to get an instant churn prediction with probability.
 
-Telecom companies face revenue loss due to customer churn.
+● Segment Strategy Simulator: Adjust business variables (e.g., reducing payment delays or increasing tenure) across a segment to simulate the potential reduction in churn rates.
 
-The objective of this project is:
+● Explainable AI: Integrated SHAP values to explain why a specific customer is predicted to churn.
 
-To accurately predict whether a customer will churn so that the company can take proactive retention actions.
+● Automated Model Selection: Uses Optuna for hyperparameter tuning and compares models like RandomForest and LightGBM.
 
-<h2>📂 Dataset Information</h2>
+<h2>📊 Dataset Insights</h2>
+The model is trained on a telecom dataset with over 500,000 records. Key features include:
 
- • 📊 Total Rows: 505,207
+● Customer Demographics: Age, Gender.
 
- • 📌 Total Features: 12
+● Usage Metrics: Tenure, Usage Frequency, Total Spend.
 
-Key Features:
+● Service Interactions: Support Calls, Payment Delay, Last Interaction.
 
- • Age
+● Contract Details: Subscription Type (Basic, Standard, Premium), Contract Length (Monthly, Quarterly, Annual).
 
- • Gender
+<h2>⚙️ Installation & Usage</h2>
+Prerequisites:
+● Python 3.8+
 
- • Tenure
+● Required libraries: streamlit, pandas, joblib, shap, matplotlib, scikit-learn, lightgbm, optuna.
 
- • Usage Frequency
+<h2>Setup</h2>
 
- • Support Calls
-
- • Payment Delay
-
- • Subscription Type (Basic, Standard, Premium)
-
- • Contract Length (Monthly, Quarterly, Annual)
-
- • Total Spend
-
- • Last Interaction
-
- • Target Variable: Churn (0/1)
-
-<h2>🔎 Exploratory Data Analysis (EDA) Insights</h2>
-
-Key business insights discovered:
-
-📌 Customers with Monthly contracts have higher churn rate.
-
-📌 Customers with more than 4 support calls show strong churn tendency.
-
-📌 Payment delays greater than 20 days significantly increase churn probability.
-
-📌 Customers with Total Spend < 500 are more likely to churn.
-
-📌 Customers above 50 years have higher churn probability.
-
-<h2>🛠 Tech Stack</h2>
-
- • Python
-
- • Pandas
-
- • NumPy
-
- • Matplotlib & Seaborn
-
- • Scikit-learn
-
- • XGBoost
-
- • LightGBM
-
- • Optuna (Hyperparameter Tuning)
-
- • SHAP (Explainable AI)
-
- • Streamlit (Deployment)
-
-<h2>⚙️ Data Preprocessing</h2>
-
- • Dropped CustomerID
-
- • Removed null values
-
- • Converted float features to integer
-
- • Used ColumnTransformer
-
- • OneHotEncoder → Gender
-
- • OrdinalEncoder → Subscription Type & Contract Length
-
- • Pipeline used for clean preprocessing + modeling
-
-<h2>🤖 Model Selection</h2>
-
-The following models were evaluated using cross-validation:
-
- • Logistic Regression
-
- • Decision Tree
-
- • Random Forest
-
- • XGBoost
-
- • LightGBM
-
-<h2>📈 Best Performing Models:</h2>
-
- • Random Forest
-
- • LightGBM
-
-<h2>🔧 Hyperparameter Tuning</h2>
-
-Hyperparameter tuning was performed using Optuna for:
-
- • Random Forest
-
- • LightGBM
-
-<h2>📊 Model Evaluation</h2>
-
-Evaluation Metrics Used:
-
- • Accuracy
-
- • Precision
-
- • Recall
-
- • F1-Score
-
- • Classification Report
-
-Both RandomForest and LightGBM achieved strong and balanced performance on the test set.
-
-<h2>🚀 Streamlit Web App</h2>
-
-An interactive web application was built using Streamlit where users can:
-
- • Enter customer details
-
- • Get churn prediction
-
- • View churn probability
-
- • See SHAP Waterfall explanation for transparency
-
-<h2>🔍 Features of the App:</h2>
-
-✔ Real-time prediction
-
-✔ Probability score
-
-✔ SHAP explainability
-
-✔ Clean UI
-
-<h2>🧠 Explainable AI (SHAP)</h2>
-
-To ensure model transparency:
-
- • Used shap.TreeExplainer
-
- • Generated SHAP Waterfall plots
-
- • Identified top contributing features for each prediction
-
-This makes the model production-ready and trustworthy.
-
-<h2>📁 Project Structure</h2>
-
-```bash
-Customer-Churn-Prediction/
-│
-├── CustomerChurn.ipynb
-├── app.py
-├── model.pkl
-├── mydata.csv
-└── README.md
+1. Clone the repository:
+```Bash
+git clone https://github.com/your-username/telecom-churn-prediction.git
+cd telecom-churn-prediction
 ```
 
-<h2>💻 How to Run Locally</h2>
-1️⃣ Clone the repository
-
-```bash
-git clone https://github.com/rajjaiswal159/Telecom-Customer-Churn-Prediction.git
-cd customer-churn-prediction
-```
-
-2️⃣ Install dependencies
-
-```bash
+2. Install dependencies:
+```Bash
 pip install -r requirements.txt
 ```
 
-3️⃣ Run Streamlit app
-
-```bash
+3. Run the Streamlit app:
+```Bash
 streamlit run app.py
 ```
 
-<h2>📌 Key Learning Outcomes</h2>
+<h2>📈 Model Performance</h2>
+Based on the experimental results in the notebook, both RandomForest and LightGBM demonstrated high accuracy and comparable F1-scores, making them reliable for business deployment.
 
- • End-to-end ML Pipeline creation
+📁 Project Structure
+● CustomerChurn.ipynb: Notebook for data preprocessing, EDA, and model training.
 
- • Feature engineering & preprocessing
+● app.py: Streamlit application script.
 
- • Hyperparameter tuning with Optuna
-
- • Model comparison & evaluation
-
- • Explainable AI using SHAP
-
- • Model deployment using Streamlit
-
-<h2>👨‍💻 Author</h2>
-
-Raj Jaiswalt
-
-⭐ If you found this project useful, consider giving it a star!
+● model.pkl: The serialized trained model (used by the app).
