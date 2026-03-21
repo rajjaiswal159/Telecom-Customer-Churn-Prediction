@@ -57,7 +57,5 @@ Based on the experimental results in the notebook, both RandomForest and LightGB
 
 <h2>📁 Project Structure</h2>
 ● CustomerChurn.ipynb: Notebook for data preprocessing, EDA, and model training.
-
 ● app.py: Streamlit application script.
-
 ● model.pkl: The serialized trained model (used by the app).
