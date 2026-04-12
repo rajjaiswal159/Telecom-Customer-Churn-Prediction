@@ -38,7 +38,7 @@ Prerequisites:
 
 1. Clone the repository:
 ```Bash
-git clone https://github.com/your-username/telecom-churn-prediction.git
+git clone https://github.com/rajjaiswal159/telecom-churn-prediction.git
 cd telecom-churn-prediction
 ```
 
