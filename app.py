@@ -85,7 +85,8 @@ if app_mode == "Single Customer Prediction":
             t_spend = st.number_input(
                 "Total Spend",
                 min_value=0,
-                value=500
+                value=500,
+                step=100
             )
 
         with col2:
@@ -102,7 +103,7 @@ if app_mode == "Single Customer Prediction":
             )
         
             d_pay = st.number_input(
-                "Payment Delay",
+                "Payment Delay (Days)",
                 min_value=0,
                 value=3
             )
