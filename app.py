@@ -5,6 +5,7 @@ import shap
 import matplotlib.pyplot as plt
 from src.predictor import predict_customer
 from src.shap_explainer import generate_shap_explanation
+from src.llm_explainer import generate_business_explanation
 
 
 # -------------------- Page Config --------------------
@@ -132,6 +133,18 @@ if app_mode == "Single Customer Prediction":
         )
 
         st.pyplot(fig)
+
+        with st.spinner("Generating AI explanation..."):
+
+            explanation = generate_business_explanation(
+                prediction,
+                churn_proba if prediction == 1 else no_churn_proba,
+                top_features
+            )
+        
+        st.subheader("🤖 AI Business Explanation")
+        
+        st.info(explanation)
         
         with st.expander("Top SHAP Features"):
             st.dataframe(top_features)
