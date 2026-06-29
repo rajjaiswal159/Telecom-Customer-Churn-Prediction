@@ -6,6 +6,10 @@ import matplotlib.pyplot as plt
 from src.predictor import predict_customer
 from src.shap_explainer import generate_shap_explanation
 from src.llm_explainer import generate_business_explanation
+from src.simulator import (
+    apply_modifications,
+    calculate_churn_rate
+)
 
 
 # -------------------- Page Config --------------------
@@ -176,50 +180,9 @@ elif app_mode == "Customer Segment Strategy Simulator":
 
 
     # -------------------- Data Modification --------------------
-    def apply_modifications(
-        df,
-        tenure_adj,
-        calls_adj,
-        delay_adj,
-        usage_adj,
-        spend_adj,
-        interaction_adj,
-        contract,
-        subscription
-    ):
-
-        df = df.copy()
-
-        df["Tenure"] = df["Tenure"] + tenure_adj
-        df["Support Calls"] = (df["Support Calls"] + calls_adj).clip(lower=0)
-        df["Payment Delay"] = (df["Payment Delay"] + delay_adj).clip(lower=0)
-
-        df["Usage Frequency"] = (df["Usage Frequency"] + usage_adj).clip(lower=0)
-        df["Total Spend"] = (df["Total Spend"] + spend_adj).clip(lower=0)
-        df["Last Interaction"] = (df["Last Interaction"] + interaction_adj).clip(lower=0)
-
-        if contract != "No Change":
-            df["Contract Length"] = contract
-
-        if subscription != "No Change":
-            df["Subscription Type"] = subscription
-
-        return df
 
 
     # -------------------- Churn Calculation --------------------
-    def calculate_churn_rate(df):
-
-        preprocessor = model_pipeline.named_steps["preprocessor"]
-        model = model_pipeline.named_steps["model"]
-
-        X = df.drop(columns=["Churn"], errors="ignore")
-
-        X_transformed = preprocessor.transform(X)
-
-        preds = model.predict(X_transformed)
-
-        return preds.mean() * 100
 
 
 
@@ -272,8 +235,14 @@ elif app_mode == "Customer Segment Strategy Simulator":
                 subscription
             )
 
-            original_rate = calculate_churn_rate(original_df)
-            new_rate = calculate_churn_rate(modified_df)
+            original_rate = calculate_churn_rate(
+                model_pipeline,
+                original_df
+            )
+            new_rate = calculate_churn_rate(
+                model_pipeline,
+                modified_df
+            )
 
             diff = new_rate - original_rate
             reduction = original_rate - new_rate
