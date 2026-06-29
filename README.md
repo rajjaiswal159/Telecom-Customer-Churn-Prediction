@@ -75,7 +75,6 @@ Telecom-Customer-Churn-Prediction/
 ├── clean_df.csv             # Processed dataset
 ├── CustomerChurn.ipynb      # Model training notebook
 ├── requirements.txt
-├── .env.example             # Environment variables template
 └── README.md
 ```
 
