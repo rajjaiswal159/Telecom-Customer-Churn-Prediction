@@ -1,72 +1,205 @@
-# Telecom Customer Churn Prediction & Strategy Simulator
+# 📊 Telecom Customer Churn Prediction Platform
 
-This project aims to help telecom companies identify customers at risk of leaving (churning) and provides a simulation tool to test the impact of retention strategies. It consists of a data science workflow for model building and a Streamlit-based web application for real-time predictions and business analysis.
+An end-to-end Machine Learning application that predicts telecom customer churn and provides AI-powered business explanations using **Google Gemini** and **SHAP Explainability**.
 
----
-
-## 🚀 Overview
-
-The repository is structured into two main components:
-
-1. Model Training Workflow (CustomerChurn.ipynb): A complete Jupyter Notebook covering data cleaning, Exploratory Data Analysis (EDA), and training multiple machine learning models (Random Forest, LightGBM, etc.) to predict churn.
-
-2. Interactive Web App (app.py): A Streamlit application that allows users to predict churn for individual customers and simulate how changes in service factors (like price or support calls) affect overall churn rates.
+The application also includes a **Customer Strategy Simulator** that allows businesses to evaluate how different retention strategies may impact overall churn.
 
 ---
 
-## 🛠️ Features
 
-- Single Customer Prediction: Input specific customer attributes (Age, Tenure, Usage Frequency, etc.) to get an instant churn prediction with probability.
-- Segment Strategy Simulator: Adjust business variables (e.g., reducing payment delays or increasing tenure) across a segment to simulate the potential reduction in churn rates.
-- Explainable AI: Integrated SHAP values to explain why a specific customer is predicted to churn.
-- Automated Model Selection: Uses Optuna for hyperparameter tuning and compares models like RandomForest and LightGBM.
+## ✨ Features
 
----
+### 👤 Single Customer Churn Prediction
+- Predict whether a customer is likely to churn.
+- Displays prediction confidence.
+- Business-friendly AI explanation powered by Google Gemini.
+- Technical SHAP explanation available in an expandable section.
 
-## 📊 Dataset Insights
+### 🤖 AI Business Insights
+- Converts complex SHAP feature contributions into simple stakeholder-friendly insights.
+- Explains why the customer is likely to churn.
+- Provides actionable retention recommendations.
 
-The model is trained on a telecom dataset with over 500,000 records. Key features include:
-- Customer Demographics: Age, Gender.
-- Usage Metrics: Tenure, Usage Frequency, Total Spend.
-- Service Interactions: Support Calls, Payment Delay, Last Interaction.
-- Contract Details: Subscription Type (Basic, Standard, Premium), Contract Length (Monthly, Quarterly, Annual).
-
----
-
-## ⚙️ Installation & Usage
-
-Prerequisites:
-- Python 3.8+
-- Required libraries: streamlit, pandas, joblib, shap, matplotlib, scikit-learn, lightgbm, optuna.
+### 📉 Customer Strategy Simulator
+- Simulate different business strategies.
+- Modify customer behavior and subscription plans.
+- Compare baseline churn vs simulated churn.
+- Measure estimated churn reduction.
 
 ---
 
-## Setup
+## 🛠️ Tech Stack
 
-### 1. Clone the repository:
+### Machine Learning
+- Scikit-learn
+- LightGBM Classifier
+- SHAP
+
+### LLM
+- Google Gemini API
+
+### Backend
+- Python
+
+### Frontend
+- Streamlit
+
+### Data Processing
+- Pandas
+- NumPy
+
+### Model Persistence
+- Joblib
+
+---
+
+## 📂 Project Structure
+
+```text
+Telecom-Customer-Churn-Prediction/
+│
+├── images/
+│   ├── home.png
+│   ├── BusinessInsights.png
+│   └── Simulator.png
+│
+├── src/
+│   ├── predictor.py         # Prediction logic
+│   ├── shap_explainer.py    # SHAP explanation
+│   ├── llm_explainer.py     # Gemini business explanation
+│   ├── simulator.py         # Strategy simulator
+│   └── __init__.py
+│
+├── app.py                   # Streamlit application
+├── model.pkl                # Trained ML model
+├── clean_df.csv             # Processed dataset
+├── CustomerChurn.ipynb      # Model training notebook
+├── requirements.txt
+├── .env.example             # Environment variables template
+└── README.md
 ```
-git clone https://github.com/rajjaiswal159/telecom-churn-prediction.git
-cd telecom-churn-prediction
+
+---
+
+## ⚙️ Installation
+
+### Clone the repository
+
+```bash
+git clone https://github.com/rajjaiswal159/Telecom-Customer-Churn-Prediction.git
+
+cd Telecom-Customer-Churn-Prediction
 ```
 
-### 2. Install dependencies:
+### Create virtual environment
+
+```bash
+python -m venv venv
 ```
+
+### Activate virtual environment
+
+Windows
+
+```bash
+venv\Scripts\activate
+```
+
+Mac/Linux
+
+```bash
+source venv/bin/activate
+```
+
+### Install dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-### 3. Run the Streamlit app:
+---
+
+## 🔑 Environment Variables
+
+Create a `.env` file.
+
+```text
+GEMINI_API_KEY=your_api_key_here
 ```
+
+---
+
+## ▶️ Run the Application
+
+```bash
 streamlit run app.py
 ```
 
 ---
 
-## 📈 Model Performance
-Based on the experimental results in the notebook, both RandomForest and LightGBM demonstrated high accuracy and comparable F1-scores, making them reliable for business deployment.
+## 📸 Application Preview
+
+### Home Page
+
+![Home](images/home.png)
 
 ---
 
-## 📁 Project Structure
-- CustomerChurn.ipynb: Notebook for data preprocessing, EDA, and model training.
-- app.py: Streamlit application script.
-- model.pkl: The serialized trained model (used by the app).
+### AI Business Insights
+
+![Prediction Dashboard](images/BusinessInsights.png)
+
+---
+
+### Strategy Simulator
+
+![Prediction Dashboard](images/Simulator.png)
+
+---
+
+## 💡 Workflow
+
+```text
+Customer Input
+       │
+       ▼
+Data Preprocessing
+       │
+       ▼
+Machine Learning Model
+       │
+       ▼
+Prediction
+       │
+       ▼
+SHAP Explainability
+       │
+       ▼
+Top Feature Contributions
+       │
+       ▼
+Google Gemini
+       │
+       ▼
+Business-Friendly Explanation
+```
+
+---
+
+## 🎯 Business Value
+
+This application bridges the gap between Machine Learning predictions and business decision-making by:
+
+- Predicting customer churn accurately.
+- Explaining predictions in simple business language.
+- Helping stakeholders understand churn drivers.
+- Supporting proactive customer retention strategies.
+- Simulating business interventions before implementation.
+
+---
+
+## 👨‍💻 Author
+
+**Raj Jaiswal**
+
+---
