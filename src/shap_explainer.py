@@ -4,12 +4,6 @@ import pandas as pd
 import streamlit as st
 
 
-@st.cache_resource
-def get_explainer(model):
-    """Cache the SHAP TreeExplainer."""
-    return shap.TreeExplainer(model)
-
-
 def generate_shap_explanation(model, x_transformed_df, feature_names):
     """
     Returns:
@@ -17,7 +11,7 @@ def generate_shap_explanation(model, x_transformed_df, feature_names):
     - top SHAP features dataframe
     """
 
-    explainer = get_explainer(model)
+    explainer = shap.TreeExplainer(model)
 
     shap_values = explainer.shap_values(x_transformed_df)
 

@@ -32,9 +32,7 @@ def generate_business_explanation(
     )
 
     prompt = f"""
-You are a senior telecom business analyst.
-
-A machine learning model predicted:
+You are a Senior Telecom Business Consultant.
 
 Prediction:
 {status}
@@ -42,17 +40,39 @@ Prediction:
 Probability:
 {probability:.2%}
 
-Top factors:
+Key Factors:
 
 {feature_text}
 
-Instructions:
+Write a report for a BUSINESS STAKEHOLDER.
 
-1. Explain in simple business language.
-2. Do NOT mention SHAP.
-3. Explain positive and negative factors.
-4. Maximum 180 words.
-5. End with 3 actionable retention recommendations.
+Rules:
+
+- Never mention SHAP.
+- Never mention Machine Learning.
+- Never mention AI model.
+- Never mention feature importance.
+- Never mention algorithms.
+- Use simple English.
+- Maximum 150 words.
+
+Return exactly in this format:
+
+## Why is this customer at risk?
+
+(Explain in simple language.)
+
+## Business Insights
+
+- Point 1
+- Point 2
+- Point 3
+
+## Recommended Actions
+
+- Action 1
+- Action 2
+- Action 3
 """
 
     response = client.models.generate_content(

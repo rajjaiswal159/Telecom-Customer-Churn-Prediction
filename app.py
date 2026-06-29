@@ -124,15 +124,12 @@ if app_mode == "Single Customer Prediction":
 
 
         # -------------------- SHAP --------------------
-        st.subheader("🔍 SHAP Explanation")
-
         fig, top_features = generate_shap_explanation(
             model,
             x_transformed_df,
             feature_names
         )
-
-        st.pyplot(fig)
+        
 
         with st.spinner("Generating AI explanation..."):
 
@@ -144,10 +141,24 @@ if app_mode == "Single Customer Prediction":
         
         st.subheader("🤖 AI Business Explanation")
         
-        st.info(explanation)
-        
-        with st.expander("Top SHAP Features"):
-            st.dataframe(top_features)
+        st.markdown(explanation)
+
+        with st.expander("⚙️ Advanced Technical Details"):
+
+            st.pyplot(fig)
+    
+            technical_df = top_features.copy()
+
+            technical_df.columns = [
+                "Feature",
+                "Contribution",
+                "Importance"
+            ]
+            
+            st.dataframe(
+                technical_df,
+                use_container_width=True
+            )
 
 
 
