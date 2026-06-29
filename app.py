@@ -3,6 +3,8 @@ import pandas as pd
 import joblib
 import shap
 import matplotlib.pyplot as plt
+from src.predictor import predict_customer
+from src.shap_explainer import generate_shap_explanation
 
 
 # -------------------- Page Config --------------------
@@ -103,20 +105,14 @@ if app_mode == "Single Customer Prediction":
             "Last Interaction": [interact]
         })
 
-        preprocessor = model_pipeline.named_steps["preprocessor"]
-        model = model_pipeline.named_steps["model"]
-
-        x_transformed = preprocessor.transform(inp)
-        feature_names = preprocessor.get_feature_names_out()
-
-        x_transformed_df = pd.DataFrame(
-            x_transformed,
-            columns=feature_names
-        )
-
-        prediction = model.predict(x_transformed_df)[0]
-        churn_proba = model.predict_proba(x_transformed_df)[0][1]
-        no_churn_proba = model.predict_proba(x_transformed_df)[0][0]
+        (
+            prediction,
+            churn_proba,
+            no_churn_proba,
+            x_transformed_df,
+            feature_names,
+            model,
+        ) = predict_customer(model_pipeline, inp)
 
         st.markdown("### 📊 Model Prediction")
 
@@ -129,21 +125,16 @@ if app_mode == "Single Customer Prediction":
         # -------------------- SHAP --------------------
         st.subheader("🔍 SHAP Explanation")
 
-        explainer = shap.TreeExplainer(model)
-        shap_values = explainer.shap_values(x_transformed_df)
-
-        shap_exp = shap.Explanation(
-            values=shap_values[0],
-            base_values=explainer.expected_value,
-            data=x_transformed_df.iloc[0],
-            feature_names=feature_names
+        fig, top_features = generate_shap_explanation(
+            model,
+            x_transformed_df,
+            feature_names
         )
 
-        fig = plt.figure()
-        shap.plots.waterfall(shap_exp, show=False)
-
         st.pyplot(fig)
-        plt.clf()
+        
+        with st.expander("Top SHAP Features"):
+            st.dataframe(top_features)
 
 
 
