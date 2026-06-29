@@ -50,52 +50,83 @@ if app_mode == "Single Customer Prediction":
 
     st.header("👤 Telecom Customer Churn Prediction")
 
-    st.subheader("Enter customer age")
-    age = st.text_input("", key="age")
+    with st.form("prediction_form"):
 
-    st.subheader("Select customer Gender")
-    gender = st.selectbox("", ["Male", "Female"])
+        st.subheader("Enter customer age")
 
-    st.subheader("How many months the customer has stayed with company")
-    tenure = st.text_input("", key="tenure")
+        col1, col2 = st.columns(2)
 
-    st.subheader("How many times customer contacted support")
-    calls = st.text_input("", key="calls")
+        with col1:
 
-    st.subheader("How many days customer used the service")
-    freq = st.text_input("", key="freq")
+            age = st.number_input(
+                "Age",
+                min_value=18,
+                max_value=100,
+                value=30
+            )
+        
+            tenure = st.number_input(
+                "Tenure (Months)",
+                min_value=0,
+                value=12
+            )
+        
+            freq = st.number_input(
+                "Usage Frequency",
+                min_value=0,
+                value=15
+            )
+        
+            subscription = st.selectbox(
+                "Subscription Type",
+                ["Basic", "Standard", "Premium"]
+            )
+        
+            t_spend = st.number_input(
+                "Total Spend",
+                min_value=0,
+                value=500
+            )
 
-    st.subheader("Enter number of days payment delay")
-    d_pay = st.text_input("", key="d_pay")
+        with col2:
 
-    st.subheader("Select customer Subscription Type")
-    subscription = st.selectbox("", ["Basic", "Premium", "Standard"])
-
-    st.subheader("Select contract length")
-    contract = st.selectbox("", ["Monthly", "Quarterly", "Annual"])
-
-    st.subheader("Total money customer spent")
-    t_spend = st.text_input("", key="t_spend")
-
-    st.subheader("Days since last interaction")
-    interact = st.text_input("", key="interact")
+            gender = st.selectbox(
+                "Gender",
+                ["Male", "Female"]
+            )
+        
+            calls = st.number_input(
+                "Support Calls",
+                min_value=0,
+                value=2
+            )
+        
+            d_pay = st.number_input(
+                "Payment Delay",
+                min_value=0,
+                value=3
+            )
+        
+            contract = st.selectbox(
+                "Contract Length",
+                ["Monthly", "Quarterly", "Annual"]
+            )
+        
+            interact = st.number_input(
+                "Last Interaction",
+                min_value=0,
+                value=5
+            )
 
 
 
     # -------------------- Prediction --------------------
-    if st.button("Predict Churn"):
-
-        try:
-            age = int(age)
-            tenure = int(tenure)
-            calls = int(calls)
-            freq = int(freq)
-            d_pay = int(d_pay)
-            t_spend = int(t_spend)
-            interact = int(interact)
-        except:
-            st.error("Please enter valid numerical values.")
-            st.stop()
+        submitted = st.form_submit_button(
+            "🔍 Predict Churn",
+            use_container_width=True
+        )
+    
+    if submitted:
 
         inp = pd.DataFrame({
             "Age": [age],
@@ -119,12 +150,37 @@ if app_mode == "Single Customer Prediction":
             model,
         ) = predict_customer(model_pipeline, inp)
 
-        st.markdown("### 📊 Model Prediction")
 
-        if prediction == 1:
-            st.error(f"🚨 Customer WILL Churn (Probability: {churn_proba:.2%})")
-        else:
-            st.success(f"✅ Customer will NOT Churn (Probability: {no_churn_proba:.2%})")
+        st.subheader("📊 Prediction Result")
+        
+        probability = churn_proba if prediction == 1 else no_churn_proba
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+        
+            if prediction == 1:
+                st.error("🚨 High Churn Risk")
+            else:
+                st.success("✅ Low Churn Risk")
+        
+        with col2:
+        
+            st.metric(
+                "Confidence",
+                f"{probability:.2%}"
+            )
+        
+        with col3:
+        
+            if churn_proba >= 0.80:
+                st.metric("Risk Level", "🔴 High")
+        
+            elif churn_proba >= 0.50:
+                st.metric("Risk Level", "🟡 Medium")
+        
+            else:
+                st.metric("Risk Level", "🟢 Low")
 
 
         # -------------------- SHAP --------------------
@@ -143,11 +199,17 @@ if app_mode == "Single Customer Prediction":
                 top_features
             )
         
-        st.subheader("🤖 AI Business Explanation")
-        
-        st.markdown(explanation)
+        st.divider()
 
-        with st.expander("⚙️ Advanced Technical Details"):
+        with st.container(border=True):
+        
+            st.subheader("🤖 AI Business Insights")
+        
+            st.markdown(explanation)
+        
+        st.divider()
+
+        with st.expander("🔬 Technical Model Explanation (For Data Scientists)"):
 
             st.pyplot(fig)
     
