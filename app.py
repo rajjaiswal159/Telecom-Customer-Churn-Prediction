@@ -1,3 +1,4 @@
+# Import required libraries and project modules
 import streamlit as st
 import pandas as pd
 import joblib
@@ -12,28 +13,29 @@ from src.simulator import (
 )
 
 
-# -------------------- Page Config --------------------
+# Configure Streamlit page settings
 st.set_page_config(page_title="Customer Churn Platform", layout="wide")
 
 
-# -------------------- Load Resources --------------------
+# Load trained model once and cache it
 @st.cache_resource
 def load_model():
     return joblib.load("model.pkl")
-
 
 @st.cache_data
 def load_data():
     return pd.read_csv("clean_df.csv")
 
 
+# Initialize model and dataset
 model_pipeline = load_model()
 original_df = load_data()
 
 
-# -------------------- App Mode Selection --------------------
+# Create navigation sidebar
 st.sidebar.title("Navigation")
 
+# Select application mode
 app_mode = st.sidebar.radio(
     "Choose Application",
     [
@@ -43,13 +45,12 @@ app_mode = st.sidebar.radio(
 )
 
 
-# ==========================================================
-#               1️⃣ INDIVIDUAL CUSTOMER PREDICTION
-# ==========================================================
+# Individual customer prediction 
 if app_mode == "Single Customer Prediction":
 
     st.header("👤 Telecom Customer Churn Prediction")
 
+    # Display prediction form
     with st.form("prediction_form"):
 
         st.subheader("Enter customer age")
@@ -58,6 +59,7 @@ if app_mode == "Single Customer Prediction":
 
         with col1:
 
+            # Customer demographic inputs
             age = st.number_input(
                 "Age",
                 min_value=18,
@@ -91,6 +93,7 @@ if app_mode == "Single Customer Prediction":
 
         with col2:
 
+            # Customer service and subscription inputs
             gender = st.selectbox(
                 "Gender",
                 ["Male", "Female"]
@@ -119,16 +122,16 @@ if app_mode == "Single Customer Prediction":
                 value=5
             )
 
-
-
-    # -------------------- Prediction --------------------
+        # Submit prediction request
         submitted = st.form_submit_button(
             "🔍 Predict Churn",
             use_container_width=True
         )
+
     
     if submitted:
 
+        # Create input dataframe for prediction
         inp = pd.DataFrame({
             "Age": [age],
             "Gender": [gender],
@@ -142,6 +145,7 @@ if app_mode == "Single Customer Prediction":
             "Last Interaction": [interact]
         })
 
+        # Generate churn prediction and probabilities
         (
             prediction,
             churn_proba,
@@ -151,9 +155,10 @@ if app_mode == "Single Customer Prediction":
             model,
         ) = predict_customer(model_pipeline, inp)
 
-
+        # Display prediction summary
         st.subheader("📊 Prediction Result")
-        
+
+        # Calculate confidence score
         probability = churn_proba if prediction == 1 else no_churn_proba
         
         col1, col2, col3 = st.columns(3)
@@ -166,7 +171,8 @@ if app_mode == "Single Customer Prediction":
                 st.success("✅ Low Churn Risk")
         
         with col2:
-        
+
+            # Show prediction metrics
             st.metric(
                 "Confidence",
                 f"{probability:.2%}"
@@ -184,7 +190,7 @@ if app_mode == "Single Customer Prediction":
                 st.metric("Risk Level", "🟢 Low")
 
 
-        # -------------------- SHAP --------------------
+        # Generate SHAP feature explanations
         fig, top_features = generate_shap_explanation(
             model,
             x_transformed_df,
@@ -192,6 +198,7 @@ if app_mode == "Single Customer Prediction":
         )
         
 
+        # Generate business-friendly AI explanation
         with st.spinner("Generating AI explanation..."):
 
             explanation = generate_business_explanation(
@@ -202,70 +209,80 @@ if app_mode == "Single Customer Prediction":
         
         st.divider()
 
+        # Display AI insights
         with st.container(border=True):
         
             st.subheader("🤖 AI Business Insights")
-        
+            
             st.markdown(explanation)
         
         st.divider()
 
+        # Display technical SHAP explanation
         with st.expander("🔬 Technical Model Explanation (For Data Scientists)"):
 
             st.pyplot(fig)
     
             technical_df = top_features.copy()
 
+            # Format feature importance table
             technical_df.columns = [
                 "Feature",
                 "Contribution",
                 "Importance"
             ]
-            
+
             st.dataframe(
                 technical_df,
                 use_container_width=True
             )
 
 
-
-# ==========================================================
-#              2️⃣ CUSTOMER SEGMENT STRATEGY SIMULATOR
-# ==========================================================
+# Customer segment strategy simulator 
 elif app_mode == "Customer Segment Strategy Simulator":
 
     st.header("📉 Strategy Impact Simulator")
 
+    # Display simulator overview
     st.write(
         "Simulate business strategies by modifying customer features "
         "and observe their effect on churn rate."
     )
 
-
-    # -------------------- Data Modification --------------------
-
-
-    # -------------------- Churn Calculation --------------------
-
-
-
-    # -------------------- Sidebar Controls --------------------
+    # Strategy adjustment controls
     st.sidebar.header("Strategy Controls")
 
+    # Customer behavior settings
     st.sidebar.subheader("Customer Behavior")
 
-    tenure_adj = st.sidebar.slider("Add Months to Tenure", 0, 24, 0)
+    tenure_adj = st.sidebar.slider(
+        "Add Months to Tenure", 0, 24, 0
+    )
 
-    usage_adj = st.sidebar.slider("Increase Usage Frequency", -10, 20, 0)
-    spend_adj = st.sidebar.slider("Increase Total Spend", -500, 2000, 0)
+    usage_adj = st.sidebar.slider(
+        "Increase Usage Frequency", -10, 20, 0
+    )
+    
+    spend_adj = st.sidebar.slider(
+        "Increase Total Spend", -500, 2000, 0
+    )
 
-    interaction_adj = st.sidebar.slider("Change Last Interaction (days)", -30, 30, 0)
+    interaction_adj = st.sidebar.slider(
+        "Change Last Interaction (days)", -30, 30, 0
+    )
 
+    # Customer issue settings
     st.sidebar.subheader("Customer Issues")
 
-    calls_adj = st.sidebar.slider("Reduce Support Calls", -5, 0, 0)
-    delay_adj = st.sidebar.slider("Reduce Payment Delay", -15, 0, 0)
+    calls_adj = st.sidebar.slider(
+        "Reduce Support Calls", -5, 0, 0
+    )
+    
+    delay_adj = st.sidebar.slider(
+        "Reduce Payment Delay", -15, 0, 0
+    )
 
+    # Subscription strategy settings
     st.sidebar.subheader("Plan Strategy")
 
     contract = st.sidebar.selectbox(
@@ -279,13 +296,14 @@ elif app_mode == "Customer Segment Strategy Simulator":
     )
 
 
-    # -------------------- Analysis --------------------
     st.subheader("Compare Churn Rates")
 
+    # Run strategy simulation
     if st.button("🚀 Run Impact Analysis"):
 
         with st.spinner("Running simulation..."):
 
+            # Apply selected business strategies
             modified_df = apply_modifications(
                 original_df,
                 tenure_adj,
@@ -298,24 +316,29 @@ elif app_mode == "Customer Segment Strategy Simulator":
                 subscription
             )
 
+            # Calculate baseline and simulated churn rates
             original_rate = calculate_churn_rate(
                 model_pipeline,
                 original_df
             )
+            
             new_rate = calculate_churn_rate(
                 model_pipeline,
                 modified_df
             )
 
+            # Compute churn improvement
             diff = new_rate - original_rate
             reduction = original_rate - new_rate
 
         col1, col2, col3 = st.columns(3)
 
+        # Display comparison metrics
         col1.metric("Baseline Churn", f"{original_rate:.2f}%")
         col2.metric("Simulated Churn", f"{new_rate:.2f}%", delta=f"{diff:.2f}%", delta_color="inverse")
         col3.metric("Churn Reduced", f"{max(0, reduction):.2f}%")
 
+        # Show strategy outcome
         if diff < 0:
             st.success(f"✅ Strategy may reduce churn by {abs(diff):.2f}%")
 
@@ -325,6 +348,7 @@ elif app_mode == "Customer Segment Strategy Simulator":
         else:
             st.info("No significant change detected.")
 
+        # Preview modified dataset
         with st.expander("View Modified Data Sample"):
             st.dataframe(modified_df.head(10))
 
