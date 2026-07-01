@@ -31,7 +31,6 @@ def generate_shap_explanation(model, x_transformed_df, feature_names):
         "SHAP Value": shap_values[0]
     })
 
-    # Calculate absolute SHAP values
     importance_df["Abs SHAP"] = importance_df["SHAP Value"].abs()
 
     # Select top contributing features
