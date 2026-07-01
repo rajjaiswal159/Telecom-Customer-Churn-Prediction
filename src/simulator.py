@@ -1,3 +1,4 @@
+# Apply strategy changes to the customer dataset
 def apply_modifications(
     df,
     tenure_adj,
@@ -42,13 +43,15 @@ def apply_modifications(
 
     return df
 
+
+# Calculate predicted churn rate for the dataset
 def calculate_churn_rate(
     model_pipeline,
     df
 ):
 
+    # Extract preprocessing pipeline and trained model
     preprocessor = model_pipeline.named_steps["preprocessor"]
-
     model = model_pipeline.named_steps["model"]
 
     X = df.drop(
@@ -56,8 +59,11 @@ def calculate_churn_rate(
         errors="ignore"
     )
 
+    # Transform input features
     X = preprocessor.transform(X)
 
+    # Predict churn for all customers
     prediction = model.predict(X)
 
+    # Return churn rate as a percentage
     return prediction.mean() * 100
