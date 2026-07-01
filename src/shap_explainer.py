@@ -2,7 +2,6 @@
 import shap
 import matplotlib.pyplot as plt
 import pandas as pd
-import streamlit as st
 
 
 # Generate SHAP explanations for a prediction
